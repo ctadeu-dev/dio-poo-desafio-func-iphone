@@ -233,7 +233,7 @@ classDiagram
     IPhoneControle --> Bateria: estende 
     IAparelhoTelefonico --> Agenda : usa
     Agenda --> Contato : usa
-    IReprodutorMusical --> Conexao : usa
-    INavegadorInternet --> Conexao : extende
+    IReprodutorMusical --> IConexao : extende
+    INavegadorInternet --> IConexao : extende
 
 ```
