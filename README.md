@@ -126,7 +126,7 @@ classDiagram
         +getNivelBateria() | Método | Verificar o nível de energia da bateria. |
     }
 
-    class Seguranca {
+    class ISeguranca {
         -int acessoAutorizado | Atributo () | O estado interno o aparelho: 0-Não autorizado (default) ou 1-Acesso autorizado. |
         +solicitarCredencial()
         -validarBiometria()
