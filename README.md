@@ -1,8 +1,37 @@
-# dio-poo-desafio-func-iphone
-Desafio de Projeto - Avaliação do conteúdo técnico.
-Explorando POO - Simulando funções do iPhone.
+<h1>
+  <a href="https://capsule-render.vercel.app/">
+     <img align="center" width=100% src="https://capsule-render.vercel.app/api?type=waving&color=D0D0D0&height=120&section=header&text=CLÁUDIO+TADEU+DOS+SANTOS&fontSize=20&fontColor=000000&animation=&fontAlignY=20"/>
+     <span> Avaliação do conteúdo técnico - Trilha Java Básico</span>
+     <br>
+     <span> Explorando POO</span>
+     <br>
+     <span> Desafio: Simular funções do iPhone</span>
+</h1>
 
-## Lista de classes, atributos e métodos
+## Objetivo do projeto:
+-	Praticar conhecimentos e Orientação a Objeto, Abstração, Herança e Polimorfismo
+-	Exibir as mensagens para nosso usuário se orientar na entrada de dados
+-	Obter as ações desejadas pelo usuário
+-	Construir classe de tratamento de excessão personalizada
+-	Construir rotina de validação de dados
+-	Se tiver dados inválidos, mostrar mensagem ao usuário.
+
+## Regras de negócio:
+1. O sistema deverá implementar uma interface de entrada para o aplicativo;
+2. Validar se o usuário está habilitado para acesso às informações do aparelho;
+2. Receber as credenciais do usuário via terminal (neste momento somente login e senha);
+3. Realizar a validação das credenciais fornecidas pelo usuário;
+4. Caso o usuário esteja habilitado para acessar o aparelho, mostrar a tela principal para ele executar as ações desejadas;
+
+## Observações:
+-	Por não utilizar armazenamento de dados, as informações são perdidas ao final;
+-	Ao executar, inicia-se um novo ciclo, com novas informações a serem digitadas no terminal pelo usuário.
+
+---
+
+Exemplos construídos para fins didáticos e aprendizado.
+
+## Lista de classes, interfaces, atributos e métodos
 
 O diagrama abaixo ilustra como estruturaramos as classes.
 
@@ -10,62 +39,73 @@ O diagrama abaixo ilustra como estruturaramos as classes.
 |-----------|----------|--------------------|-----------|---------------------|
 | PhoneControle | Controle | -modelo | Atributo (String) | O nome do aparelho (ex: "iPhone 15"). |
 | PhoneControle | Controle | -estadoAparelho | Atributo (int) | O estado interno o aparelho: 0-inativo (default) ou 1-ativo. |
+| PhoneControle | Controle | -modoExibicao | Atributo (int) | Modo de exibição da tela para o usuário 0-Vertical (default) ou 1-Horizontal. |
 | PhoneControle | Controle | +ligarAparelho() | Método | Altera o estado do aparelho para ativo. |
 | PhoneControle | Controle | +desligarAparelho() | Método | Altera o estado do aparelho para inativo. |
 | PhoneControle | Controle | +autenticarUsuario() | Método | Solicitar validação de permissão de acesso do usuário ao telefone. |
 | PhoneControle | Controle | -showEstadoAparelho() | Método | Apresentar ao usuário o estado de todos os controles do aparelho (bateria, conexão, rede de telefonia, etc.). |
-| PhoneControle | Controle | +solicitarAcaoUsuario() | Método | Disponibiliza opções para usuário tomar ação do que quer fazer. |
+| PhoneControle | Controle | -identificarPosicaoAparelho() | Método | Detectar se o aparelho está na posição Vertical ou Horizontal. |
 | PhoneControle | Controle | +aumentarVolume() | Método | Aumentar o volume de saida de som do aparelho. |
 | PhoneControle | Controle | +diminuirVolume() | Método | diminuir o volume de saida de som do aparelho. |
 | - | - | - | - | - |
+| IPhone | Interface | +solicitarAcaoUsuario() | Método | Disponibiliza opções para usuário tomar ação do que quer fazer. |
+| - | - | - | - | - |
 | Bateria | Controle | -nivelBateria | Atributo (int) | O estado interno da carga (0 a 100). |
 | Bateria | Energia | +carregarBateria() | Método | Controlar o carregamento de energia da bateria. |
-| Bateria | Energia | +consultarNivelBateria() | Método | Verificar o nível de energia da bateria. |
+| Bateria | Energia | +getNivelBateria() | Método | Verificar o nível de energia da bateria. |
 | - | - | - | - | - |
-| Seguranca | Controle | -acessoAutorizado | Atributo (int) | O estado interno o aparelho: 0-Não autorizado (default) ou 1-Acesso autorizado. |
+| Seguranca | Controle | -acessoAutorizado | Atributo (int) | Estado da autorização de acesso: 0-Não autorizado (default) ou 1-Acesso autorizado. |
 | Seguranca | Acesso | +solicitarCredencial() | Método | Solicitar ao usuário as credenciais de acesso. |
-| Seguranca | Acesso | -validarBiometria() | Método | Altera o estado do aparelho para inativo. |
-| Seguranca | Acesso | -validarFacial() | Método | Altera o estado do aparelho para inativo. |
-| Seguranca | Acesso | -validarSenha() | Método | Altera o estado do aparelho para inativo. |
-| Seguranca | Acesso | -validarGeometria() | Método | Altera o estado do aparelho para inativo. |
+| Seguranca | Acesso | -validarBiometria() | Método | Validar credencial por biometria. |
+| Seguranca | Acesso | -validarFacial() | Método | Validar credencial por reconhecimento facial. |
+| Seguranca | Acesso | -validarSenha() | Método | Validar credencial por usuário e senha. |
+| Seguranca | Acesso | -validarGeometria() | Método | Validar credencial por desenho geométrico. |
 | - | - | - | - | - |
 | Conexao | Controle | -modoAviao | Atributo (int) | O estado da conexão: 0-Modo Normal (default) ou 1-Modo Avião. |
 | Conexao | Controle | -modoWifi | Atributo (int) | O estado do Wifi: 0-Modo Desligado (default) ou 1-Modo Ligado. |
 | Conexao | Controle | -chipTelefonia | Atributo (int) | O estado do Chip de telefonia: 0-Chip Ausente (default) ou 1-Chip Presente. |
 | Conexao | Controle | -redeTelefonia | Atributo (int) | Controla o estado da rede de telefonia: 0-sem sinal (default) ou 1-rede operante. |
+| Conexao | Controle | -redeWifiSelecionada | Atributo (String) | Controla a rede Wifi selecionada pelo usuário e que está operante. |
 | Conexao | Controle | +MODO_AVIAO_LIGADO | Constante (int) | (1) Constante indicativa de Modo Avião ligado. |
 | Conexao | Controle | +MODO_AVIAO_DESLIGADO | Constante (int) | (0) Constante indicativa de Modo Avião desligado. |
 | Conexao | Controle | +MODO_Wifi_LIGADO | Constante (int) | (1) Constante indicativa de Wifi ligado. |
 | Conexao | Controle | +MODO_Wifi_DESLIGADO | Constante (int) | (0) Constante indicativa de Wifi desligado. |
 | Conexao | Controle | +conectarRedeTelefonia() | Método | Conectar com a rede telefônica |
 | Conexao | Controle | +desconectarRedeTelefonia() | Método | Desconectar da rede telefônica. |
-| Conexao | Controle | +consultarEstadoChipTelefonia() | Método | Consulta o estado do Chip de telefonia. |
-| Conexao | Controle | +consultarEstadoRedeTelefonia() | Método | Consulta o estado da rede de telefonia. |
+| Conexao | Controle | +getEstadoChipTelefonia() | Método | Consulta o estado do Chip de telefonia. |
+| Conexao | Controle | +getEstadoRedeTelefonia() | Método | Consulta o estado da rede de telefonia. |
 | Conexao | Controle | +colocarModoAviao() | Método | Coloca o aparelho em modo avião, desligando todas as conecões, mas mantem o estado atual delas para retorno. |
 | Conexao | Controle | +retirarModoAviao() | Método | Retira o aparelho do modo avião, retornando as conexões no estado em que estavam. |
 | Conexao | Controle | +ligarModoWifi() | Método | Ligar as conexões do modo Wifi. |
 | Conexao | Controle | +desligarModoWifi() | Método | Desligar as conexões do modo Wifi. |
 | Conexao | Controle | +selecionarConexaoWifi() | Método | Verificar a rede e selecionar a conexão Wifi a ser conectada. |
-| Conexao | Controle | +consultarModoAviao() | Método | Consulta o estado do modo Avião. |
-| Conexao | Controle | +consultarEstadoWifi() | Método | Consulta o estado da conexão Wifi. |
+| Conexao | Controle | +getEstadoModoAviao() | Método | Consulta o estado do modo Avião. |
+| Conexao | Controle | +getEstadoWifi() | Método | Consulta o estado da conexão Wifi. |
 | - | - | - | - | - |
-| Agenda | Controle | -listaContato | Atributo (List) | Musica selecionada. |
-| Agenda | Contato | +adicionarContato() | Método | Seleciona o número destino na agenda. |
-| Agenda | Contato | +removerContato() | Método | Seleciona o número destino na agenda. |
-| Agenda | Contato | +consultarContato() | Método | Seleciona o número destino na agenda. |
-| Agenda | Contato | +consultarListaContato() | Método | Seleciona o número destino na agenda. |
-| Agenda | Contato | +selecionarContatoDestino() -> numeroTelefDestino | Método | Seleciona o número destino na agenda. |
+| Contato | Informação | -nomeContato | Atributo (String) | Nome do contato. |
+| Contato | Informação | -tipoTelefone | Atributo (String) | Tipo do contato (Residencial, Comercial, Whatsapp, etc). |
+| Contato | Informação | -paisTelefone | Atributo (String) | País onde o numero de telefone está (ex.: +55 Brasil). |
+| Contato | Informação | -dddTelefone | Atributo (String) | DDD referente à região onde a operadora está. |
+| Contato | Informação | -numTelefone | Atributo (String) | Numero do telafone. |
 | - | - | - | - | - |
-| AparelhoTelefonico | Chamada | -verificarSinalChamada() | Método | Verifica o estado da rede de telefonia ao realizar chamada. |
+| Agenda | Controle | -listaContato | Atributo (List) | Lista de nomes e telefones. |
+| Agenda | Controle | -contatoSelecionado | Atributo (Contato) | Contato que foi selecionado pelo usuário. |
+| Agenda | Contato  | +adicionarContato() | Método | Adiciona um contato na agenda. |
+| Agenda | Contato  | +removerContato() | Método | Remove um contato da agenda. |
+| Agenda | Contato  | +selecionarContatoDestino() | Método | Seleciona o número do destino na agenda. |
+| Agenda | Contato  | +getContato() | Método | retorna o contato selecionado pelo usuario. |
+| Agenda | Contato  | +getListaContato() | Método | Seleciona o número destino na agenda. |
+| - | - | - | - | - |
+| AparelhoTelefonico | Chamada | -verificarSinalRede() | Método | Verifica o estado da rede de telefonia ao realizar chamada. |
 | AparelhoTelefonico | Chamada | +atenderChamada() | Método | Executa uma ação de atendimento de chamada telafônica. |
-| AparelhoTelefonico | Chamada | +fazerChamada(numeroTelefDestino) | Método | Executa uma ação baseada em um parâmetro. |
-| AparelhoTelefonico | Chamada | +desligarChamada() | Método | Finaliza a ação de chamada telafônica ativa. |
+| AparelhoTelefonico | Chamada | +fazerChamada(numeroTelefDestino) | Método | Executa uma ação de realizar chamada. |
+| AparelhoTelefonico | Chamada | +desligarChamada() | Método | Finaliza a chamada telefônica ativa. |
 | - | - | - | - | - |
-| MReprodutorMusical | Controle | -musicaSelecionada | Atributo (String) |Musica selecionada. |
-| MReprodutorMusical | Media | +escolherNusica() | Método | Selecionar uma música para tocar e retorna o id da musica |
-| MReprodutorMusical | Media | +tocarMusica() | Método | Interage com a interface de mídia executando a musica selecionada. |
-| MReprodutorMusical | Media | +pausarMusica() | Método | Interage com a interface de mídia executando a musica selecionada. |
-| MReprodutorMusical | Media | +pararMusica() | Método | Interage com a interface de mídia executando a musica selecionada. |
+| ReprodutorMusical | Controle | -musicaSelecionada | Atributo (String) |Musica selecionada. |
+| ReprodutorMusical | Media | +escolherNusica() | Método | Selecionar uma música para tocar e retorna o id da musica |
+| ReprodutorMusical | Media | +tocarMusica() | Método | Interage com a interface de mídia executando a musica selecionada. |
+| ReprodutorMusical | Media | +pausarMusica() | Método | Interage com a interface de mídia pauzando a musica. |
+| ReprodutorMusical | Media | +pararMusica() | Método | Interage com a interface de mídia parando a musica. |
 | - | - | - | - | - |
 | NavegadorInternet | Controle | -urlSite | Atributo (String) | Site informado pelo usuário. |
 | NavegadorInternet | Controle | -abaAtiva | Atributo (int) | Controle da aba ativa. |
@@ -80,22 +120,41 @@ O diagrama abaixo ilustra como estruturaramos as classes.
 | NavegadorInternet | Navegação | +atualizarPagina() | Método | Acessar a url informada pelo usuário na aba ativa. |
 | NavegadorInternet | Navegação | +encerrarNavegacao() | Método | Encerrar navegação e fechar o navegador. |
 | - | - | - | - | - |
-| ICameraIntegrada | Controle | -listaImagem | Atributo (List) | Galeria de Imagens. |
+| ICameraIntegrada | Controle | -listaImagem | Atributo (List) | Galeria de media. |
 | ICameraIntegrada | Controle | -estadoCamera | Atributo (int) | Estado da câmera: 0-Desligada ou 1-Ligada. |
 | ICameraIntegrada | Controle | -modoCamera | Atributo (int)   | Modo da câmera: 0-Foto (default) ou 1-Video. |
-| ICameraIntegrada | Imagem   | +iniciarCamera() | Método | Ligar a câmera e colocar em modo de uso. |
-| ICameraIntegrada | Imagem   | +fecharCamera() | Método | Desligar a câmera do modo de uso. |
-| ICameraIntegrada | Imagem   | +selecionarModoFoto() | Método | Seleciona o modo para tirar foto. |
-| ICameraIntegrada | Imagem   | +selecionarModoVideo() | Método | Seleciona o modo para gravar video. |
-| ICameraIntegrada | Imagem   | +tirarFoto() | Método | Registra a foto e coloca na galeria. |
-| ICameraIntegrada | Imagem   | +gravarVideo() | Método | Grava o vídeo e coloca na galeria. |
-| ICameraIntegrada | Imagem   | -inserirNaGaleria() | Método | Seleciona o número destino na agenda. |
-| ICameraIntegrada | Imagem   | -deletarDaGaleria() | Método | Seleciona o número destino na agenda. |
-| ICameraIntegrada | Imagem   | +listarGaleria() -> numeroTelefDestino | Método | Seleciona o número destino na agenda. |
-| ICameraIntegrada | Imagem   | +mostrarFoto() -> numeroTelefDestino | Método | Seleciona o número destino na agenda. |
-| ICameraIntegrada | Imagem   | +exibirVideo() -> numeroTelefDestino | Método | Seleciona o número destino na agenda. |
+| ICameraIntegrada | Imagem | +iniciarCamera() | Método | Ligar a câmera e colocar em modo de uso. |
+| ICameraIntegrada | Imagem | +fecharCamera() | Método | Desligar a câmera do modo de uso. |
+| ICameraIntegrada | Imagem | +selecionarModoFoto() | Método | Seleciona o modo para tirar foto. |
+| ICameraIntegrada | Imagem | +selecionarModoVideo() | Método | Seleciona o modo para gravar video. |
+| ICameraIntegrada | Imagem | +tirarFoto() | Método | Registra a foto e coloca na galeria. |
+| ICameraIntegrada | Imagem | +gravarVideo() | Método | Grava o vídeo e coloca na galeria. |
+| ICameraIntegrada | Imagem | -inserirNaGaleria() | Método | Seleciona o número destino na agenda. |
+| ICameraIntegrada | Imagem | -deletarDaGaleria() | Método | Seleciona o número destino na agenda. |
+| ICameraIntegrada | Imagem | +listarGaleria() -> numeroTelefDestino | Método | Seleciona o número destino na agenda. |
+| ICameraIntegrada | Imagem | +mostrarFoto() -> numeroTelefDestino | Método | Seleciona o número destino na agenda. |
+| ICameraIntegrada | Imagem | +exibirVideo() -> numeroTelefDestino | Método | Seleciona o número destino na agenda. |
+| - | - | - | - | - |
+| IGaleria | Controle | -galeriaMedia | Atributo (List) | Galeria de media. |
+| IGaleria | Media | -inserirNaGaleria() | Método | Insere media (foto ou vídeo) na galeria. |
+| IGaleria | Media | -deletarDaGaleria() | Método | Remove media (foto ou vídeo) da galeria. |
+| IGaleria | Media | +listarGaleria() | Método | Lista as medias que estão na galeria. |
+| IGaleria | Media | +exibirMedia() | Método | Orquestrador para exibição de media (Foto ou Video). |
+| IGaleria | Media | -mostrarFoto() | Método | Exibe a media (foto) para o usuário. |
+| IGaleria | Media | -exibirVideo() | Método | Exibe a media (vídeo) para o usuário. |
+| - | - | - | - | - |
+| Media | Controle | -idMedia | Atributo (long) | Id para indexação e localização do item na galeria. |
+| Media | Controle | -tipoMedia | Atributo (int ) | Tipo de Media: 0-Foto ou 1-Video. |
+| Media | Controle | -resolucaoX | Atributo (long) |  Largura da foto ou quadro se vídeo (em pixel). |
+| Media | Controle | -resolucaoY | Atributo (long) |  Altura da foto ou quadro se vídeo (em pixel). |
+| Media | Controle | -videoTempo | Atributo (Time) |  Tempo de gravação do vídeo (Horas:minutos:segundos). |
+| Media | Controle | -videoFPS   | Atributo (int ) |  Quantidade de frames por segundo (se vídeo). |
+| Media | Controle | -videoPalmNtsc | Atributo (int ) |  Padrão de imagem do Video (PAL-M ou NTSC). |
+| Media | Controle | -corpoFotoVideo | Atributo (Hash) |  Hash contendo a media propriamente dita. |
 
-### O uso dos sinais "+" para público e "-" para privado
+* O uso dos sinais "+" para público e "-" para privado
+
+---
 
 ## Diagrama de Classe UML
 
@@ -106,28 +165,30 @@ classDiagram
     class IPhoneControle {
         -String modelo
         -int estadoAparelho 
+        -int modoExibicao
         -Bateria bateria
         -showEstadoAparelho()
         +ligarAparelho()
         +desligarAparelho()
         +aumentarVolume()
         +diminuirVolume()
+        +autenticarUsuario()
+        -identificarPosicaoAparelho()
     }
 
     class IPhone {
         +IPhone(String modelo)
-        +autenticarUsuario()
         +solicitarAcaoUsuario()
     }
 
     class Bateria {
-        -nivelBateria | Atributo (int) | O estado interno da carga (0 a 100). |
-        +carregarBateria() | Método | Controlar o carregamento de energia da bateria. |
-        +getNivelBateria() | Método | Verificar o nível de energia da bateria. |
+        -int nivelBateria
+        +carregarBateria()
+        +getNivelBateria()
     }
 
     class ISeguranca {
-        -int acessoAutorizado | Atributo () | O estado interno o aparelho: 0-Não autorizado (default) ou 1-Acesso autorizado. |
+        -int acessoAutorizado
         +solicitarCredencial()
         -validarBiometria()
         -validarFacial()
@@ -147,15 +208,15 @@ classDiagram
         +int MODO_Wifi_DESLIGADO
         +conectarRedeTelefonia()
         +desconectarRedeTelefonia()
-        +int consultarEstadoChipTelefonia()
-        +int consultarEstadoRedeTelefonia()
+        +int getEstadoChipTelefonia()
+        +int getEstadoRedeTelefonia()
         +colocarModoAviao()
         +retirarModoAviao()
         +ligarModoWifi()
         +desligarModoWifi()
         +String selecionarConexaoWifi()
-        +int consultarModoAviao()
-        +int consultarEstadoWifi()
+        +int getEstadoModoAviao()
+        +int getEstadoWifi()
     }
 
     class Contato {
@@ -168,13 +229,14 @@ classDiagram
 
     class Agenda {
         -List<Contato> listaContato
+        -Contato contatoSelecionado
         +adicionarContato(Contato)
         +removerContato(Contato)
-        +Contato consultarContato()
-        +List<Contato> consultarListaContato()
         +Contato selecionarContatoDestino()
+        +Contato getContato(String nome)
+        +List<Contato> getListaContato()
     }
-
+    
     class IAparelhoTelefonico {
         -Agenda agenda
         -verificarSinalRede()
@@ -192,48 +254,71 @@ classDiagram
     }
 
     class INavegadorInternet {
-        -urlSite | Atributo (String) | Site informado pelo usuário. |
-        -abaAtiva | Atributo (int) | Controle da aba ativa. |
-        -abaLista | Atributo (List) | Controle da aba ativa. |
-        +solicitarSiteUsuario() -> String url | Método | Solicitar para o usuário informar o site da internet |
-        -verificarConexaoInternet() | Método | Acessar o site informado pelo usuário. |
-        +adicionarNovaAba() | Método | Adicionar nova aba no navegador. |
-        +fecharAba() | Método | Fechar uma aba. |
-        +selecionarAba() | Método | Seleciona uma aba da lista. |
-        +mostrarAbas() | Método | mostra as abas existentes na lista. |
-        +exibirPagina(String url) | Método | Acessar a url informada pelo usuário na aba ativa. |
-        +atualizarPagina() | Método | Acessar a url informada pelo usuário na aba ativa. |
-        +encerrarNavegacao() | Método | Encerrar navegação e fechar o navegador. |
+        -String urlSite
+        -int abaAtiva
+        -List abaLista
+        +String solicitarSiteUsuario()
+        -int verificarConexaoInternet()
+        +int adicionarNovaAba()
+        +fecharAba(int idAba)
+        +int selecionarAba()
+        +getAbas()
+        +exibirPagina(String url, int idAba)
+        +atualizarPagina(int idAba)
+        +encerrarNavegacao()
     }
 
     class ICameraIntegrada {
-        -listaImagem | Atributo (List) | Galeria de Imagens. |
-        -estadoCamera | Atributo (int) | Estado da câmera: 0-Desligada ou 1-Ligada. |
-        -modoCamera | Atributo (int)   | Modo da câmera: 0-Foto (default) ou 1-Video. |
-        +iniciarCamera() | Método | Ligar a câmera e colocar em modo de uso. |
-        +fecharCamera() | Método | Desligar a câmera do modo de uso. |
-        +selecionarModoFoto() | Método | Seleciona o modo para tirar foto. |
-        +selecionarModoVideo() | Método | Seleciona o modo para gravar video. |
-        +tirarFoto() | Método | Registra a foto e coloca na galeria. |
-        +gravarVideo() | Método | Grava o vídeo e coloca na galeria. |
-        -inserirNaGaleria() | Método | Seleciona o número destino na agenda. |
-        -deletarDaGaleria() | Método | Seleciona o número destino na agenda. |
-        +listarGaleria() -> numeroTelefDestino | Método | Seleciona o número destino na agenda. |
-        +mostrarFoto() -> numeroTelefDestino | Método | Seleciona o número destino na agenda. |
-        +exibirVideo() -> numeroTelefDestino | Método | Seleciona o número destino na agenda. |
+        -int estadoCamera
+        -int modoCamera
+        +iniciarCamera()
+        +fecharCamera()
+        +selecionarModoFoto()
+        +selecionarModoVideo()
+        +tirarFoto()
+        +gravarVideo()
+    }
+
+    class IGaleria {
+        -List<Media> galeriaMedia
+        +inserirNaGaleria(Media media)
+        +deletarDaGaleria(long idMedia)
+        +list<Media> listarGaleria()
+        +exibirMedia(long idMedia)
+        -mostrarFoto(long idMedia)
+        -exibirVideo(long idMedia)
+    }
+
+    class Media {
+        -long idMedia
+        -int tipoMedia
+        -long resolucaoX
+        -long resolucaoY
+        -Time videoTempo
+        -int videoFPS
+        -int videoPalmNtsc
+        -Hash corpoFotoVideo
     }
 
     %% Relacionamentos
     IPhoneControle --> IPhone : herda de
-    IPhone --|> IReprodutorMusical : implementa
+    IPhone --|> ISeguranca
     IPhone --|> IAparelhoTelefonico : implementa
+    IPhone --|> IReprodutorMusical : implementa
     IPhone --|> INavegadorInternet : implementa
     IPhone --|> ICameraIntegrada : implementa
-    IPhone --|> ISeguranca
+    IPhone --|> IReprodutorMedia : implementa
     IPhoneControle --> Bateria: estende 
     IAparelhoTelefonico --> Agenda : usa
-    Agenda --> Contato : usa
+    Agenda --> Contato : estende
     IReprodutorMusical --> IConexao : extende
     INavegadorInternet --> IConexao : extende
-
+    ICameraIntegrada --> IGaleria : extende
+    IGaleria --> Media : usa
+    IReprodutorMedia --> IGaleria: implementa
 ```
+
+---
+
+## FIM
+
