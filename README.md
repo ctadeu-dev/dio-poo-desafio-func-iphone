@@ -86,43 +86,7 @@ O diagrama abaixo ilustra como estruturaramos as classes.
 ```mermaid
 
 classDiagram
-    class DataProcessor {
-        -data: DataFrame
-        -config: Dict
-        +load_data(path: str)
-        +clean_data()
-        +transform_data()
-        +save_results(path: str)
-    }
-    
-    class Visualizer {
-        -processor: DataProcessor
-        +create_plot(type: str)
-        +save_figure(path: str)
-        +show_dashboard()
-    }
-    
-    class Model {
-        <<abstract>>
-        -parameters: Dict
-        +train(data: DataFrame)
-        +predict(data: DataFrame)
-        +evaluate()
-    }
-    
-    class RandomForest {
-        -n_trees: int
-        -max_depth: int
-        +feature_importance()
-    }
-    
-    DataProcessor <|-- Visualizer : usa
-    Model <|-- RandomForest : herda
-    DataProcessor <|-- Model : processa dados para
-```
 
-```mermaid
-classDiagram
     class IPhone {
         -String modelo
         -int nivelBateria
@@ -130,6 +94,35 @@ classDiagram
         +getNivelBateria() int
     }
 
+    class ReprodutorMusical {
+        <<interface>>
+        +tocar()
+        +pausar()
+        +selecionarMusica(String musica)
+    }
+
+    class AparelhoTelefonico {
+        <<interface>>
+        +ligar(String numero)
+        +atender()
+        +iniciarCorreioVoz()
+    }
+
+    class NavegadorInternet {
+        <<interface>>
+        +exibirPagina(String url)
+        +adicionarNovaAba()
+        +atualizarPagina()
+    }
+
+    class IPhonePro {
+        +tirarFotoPro()
+    }
+
+    %% Relacionamentos
+    IPhone --|> ReprodutorMusical : implementa
+    IPhone --|> AparelhoTelefonico : implementa
+    IPhone --|> NavegadorInternet : implementa
+    IPhonePro --> IPhone : herda de
+    
 ```
-
-
