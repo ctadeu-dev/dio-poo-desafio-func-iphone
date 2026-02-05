@@ -1,35 +1,42 @@
-<h1>
-  <a href="https://capsule-render.vercel.app/">
-     <img align="center" width=100% src="https://capsule-render.vercel.app/api?type=waving&color=D0D0D0&height=120&section=header&text=CLÁUDIO+TADEU+DOS+SANTOS&fontSize=20&fontColor=000000&animation=&fontAlignY=20"/>
-     <span> Avaliação do conteúdo técnico - Trilha Java Básico</span>
-     <br>
-     <span> Explorando POO</span>
-     <br>
-     <span> Desafio: Simular funções do iPhone</span>
-</h1>
+import excessao.ParametrosInvalidosException;
+import java.util.Scanner;
 
-## Objetivo do projeto:
--	Praticar conhecimentos e Orientação a Objeto, Abstração, Herança e Polimorfismo
--	Exibir as mensagens para nosso usuário se orientar na entrada de dados
--	Obter as ações desejadas pelo usuário
--	Construir classe de tratamento de excessão personalizada
--	Construir rotina de validação de dados
--	Se tiver dados inválidos, mostrar mensagem ao usuário.
+public class iPhoneMainFunc {
+    public static void main(String[] args) {
+        
+        Scanner terminal = new Scanner(System.in);
+        System.out.println("Digite o primeiro parâmetro");
+        int parametroUm = terminal.nextInt();
 
-## Regras de negócio:
-1. O sistema deverá implementar uma interface de entrada para o aplicativo;
-2. Validar se o usuário está habilitado para acesso às informações do aparelho;
-2. Receber as credenciais do usuário via terminal (neste momento somente login e senha);
-3. Realizar a validação das credenciais fornecidas pelo usuário;
-4. Caso o usuário esteja habilitado para acessar o aparelho, mostrar a tela principal para ele executar as ações desejadas;
+        System.out.println("Digite o segundo parâmetro");
+        int parametroDois = terminal.nextInt();
 
-## Observações:
--	Por não utilizar armazenamento de dados, as informações são perdidas ao final;
--	Ao executar, inicia-se um novo ciclo, com novas informações a serem digitadas no terminal pelo usuário.
+        try {
+            //chamando o método contendo a lógica de contagem
+            contar(parametroUm, parametroDois);
 
----
+        }catch (ParametrosInvalidosException exception) {
+            //imprimir a mensagem: O segundo parâmetro deve ser maior que o primeiro
+            System.out.println(exception.getMessage());
+        }
+    }
 
-Exemplos construídos para fins didáticos e aprendizado.
+    static void contar(int parametroUm, int parametroDois ) throws ParametrosInvalidosException {
+        //validar se parametroUm é MAIOR que parametroDois e lançar a exceção
+        if(parametroUm > parametroDois) {
+            throw new ParametrosInvalidosException("O segundo parâmetro deve ser maior que o primeiro!");
+        }
+
+        int contagem = parametroDois - parametroUm;
+
+        // Realizar o for para imprimir os números com base na variável contagem
+        for (int idxContagem = 1; idxContagem <= contagem; idxContagem++) {
+            System.out.println("Realizando a impressão do número " + String.valueOf(idxContagem));
+        }
+    }
+
+/*
+
 
 ## Lista de classes, interfaces, atributos e métodos
 
@@ -161,20 +168,6 @@ O diagrama abaixo ilustra como estruturaramos as classes.
 ```mermaid
 
 classDiagram
-
-    class IPhoneControle {
-        -String modelo
-        -int estadoAparelho 
-        -int modoExibicao
-        -Bateria bateria
-        -showEstadoAparelho()
-        +ligarAparelho()
-        +desligarAparelho()
-        +aumentarVolume()
-        +diminuirVolume()
-        +autenticarUsuario()
-        -identificarPosicaoAparelho()
-    }
 
     class IPhone {
         +IPhone(String modelo)
@@ -318,7 +311,6 @@ classDiagram
     IReprodutorMedia --> IGaleria: implementa
 ```
 
----
+*/    
 
-## FIM
-
+}

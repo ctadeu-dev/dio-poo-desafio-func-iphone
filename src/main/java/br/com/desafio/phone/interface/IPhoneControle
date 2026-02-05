@@ -1,0 +1,57 @@
+
+public interface IPhoneControle {
+
+    // | PhoneControle | Controle | -modelo                       | Atributo (String) | O nome do aparelho (ex: "iPhone 15"). |
+    // | PhoneControle | Controle | -estadoAparelho               | Atributo (int)    | O estado interno o aparelho: 0-inativo (default) ou 1-ativo. |
+    // | PhoneControle | Controle | -modoExibicao                 | Atributo (int)    | Modo de exibição da tela para o usuário 0-Vertical (default) ou 1-Horizontal. |
+
+    private String modelo = "";
+    private int estadoAparelho 
+    private int modoExibicao
+    private Bateria bateria = new Bateria();
+
+    private void showEstadoAparelho() {
+        System.out.println("Estado do Aparelho: " + this.estadoAparelho);
+    }
+
+    public void ligarAparelho() {
+        System.out.println("Ligando aparelho...");
+    }
+
+    public void desligarAparelho() {
+        System.out.println("Desligando aparelho...");
+    }
+
+    public void aumentarVolume() {
+        System.out.println("Aumentando volume...");
+    }
+
+    public void diminuirVolume() {
+        System.out.println("Diminuindo volume...");
+    }
+
+    public void autenticarUsuario() {
+        System.out.println("Autenticando usuário...");
+    }
+
+    private void identificarPosicaoAparelho() {
+        if (this.modoExibicao == 0) {
+            System.out.println("Aparelho em modo Vertical");
+        } else {
+            System.out.println("Aparelho em modo Horizontal");
+        }
+    }
+    
+    
+    // | Classe        | Função   | Elemento                      | Tipo              | Descrição           |
+    // |---------------|----------|-------------------------------|-------------------|---------------------|
+
+    // | PhoneControle | Controle | +ligarAparelho()              | Método            | Altera o estado do aparelho para ativo. |
+    // | PhoneControle | Controle | +desligarAparelho()           | Método            | Altera o estado do aparelho para inativo. |
+    // | PhoneControle | Controle | +autenticarUsuario()          | Método            | Solicitar validação de permissão de acesso do usuário ao telefone. |
+    // | PhoneControle | Controle | -showEstadoAparelho()         | Método            | Apresentar ao usuário o estado de todos os controles do aparelho (bateria, conexão, rede de telefonia, etc.). |
+    // | PhoneControle | Controle | -identificarPosicaoAparelho() | Método            | Detectar se o aparelho está na posição Vertical ou Horizontal. |
+    // | PhoneControle | Controle | +aumentarVolume()             | Método            | Aumentar o volume de saida de som do aparelho. |
+    // | PhoneControle | Controle | +diminuirVolume()             | Método            | diminuir o volume de saida de som do aparelho. |
+    
+}
