@@ -1,4 +1,4 @@
-package excessao;
+package br.com.desafio.phone.excessao;
 
 public class ParametrosInvalidosException extends Exception {
     @java.io.Serial
